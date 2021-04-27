@@ -32,6 +32,8 @@ async fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
                         info!("Member {}#{} has the trolling role. Kicking now...", member.user.name, member.user.discriminator);
                         if let Err(e) = http_client.remove_guild_member(member.guild_id, member.user.id).await {
                             error!("Error kicking member: {}", e);
+                        } else {
+                            info!("Kicked a troll: {}#{}", member.user.name, member.user.discriminator);
                         }
                         break
                     }
